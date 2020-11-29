@@ -31,3 +31,21 @@ services:
     environment:
       - TZ=${TZ}
     tty: true
+  mysql:
+    container_name: ${PROJECT}-mysql
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    volumes:
+      - ./storage/mysql:/var/lib/mysql:cached
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:cached
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - TZ=${TZ}
+    tty: true
+
+volumes:
+  mysql_store:
