@@ -39,9 +39,10 @@ services:
     volumes:
       - ./storage/mysql:/var/lib/mysql:cached
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:cached
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
     environment:
       - MYSQL_DATABASE=${DB_DATABASE}
-      - MYSQL_USER=${DB_USERNAME}
+      # - MYSQL_USER=${DB_USERNAME}
       - MYSQL_PASSWORD=${DB_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
       - TZ=${TZ}
